@@ -1,0 +1,27 @@
+<p>player-card works!</p>
+
+<!-- <a [routerLink]="['/player-detail', player.id]"></a> -->
+<div class="playerCard" *ngFor="let player of players"  (click)="goToPlayer(player.id)">
+    <div class="players-container">
+        <div class="player">
+            <p class="playerNumber">
+               {{player.shirtNumber}}
+            
+            </p>
+            <p class="playerName">
+                {{player.name}}
+            </p>
+            <p class="playerPosition">
+                {{player.position}}
+            </p>
+            <p class="playerportrait">
+                {{player.portrait}}
+            </p>
+           
+            
+    </div>
+  
+
+</div>
+
+</div>

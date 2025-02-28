@@ -22,3 +22,14 @@
     display: inline-block;
     
   }
+  .logo{
+    width: 50px;
+    height: 44.9px;
+  }
+  .shohoku-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;  /* Hace el texto bold */
+    font-size: 20px;   /* Ajusta el tamaño si es necesario */
+    text-align: center;
+  }
+  

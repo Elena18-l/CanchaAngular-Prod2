@@ -1,1 +1,26 @@
 <p>player-detail works!</p>
+
+
+
+<div *ngIf="player">
+    <h2>{{ player.name | uppercase }} Details</h2>
+    <div><span>id: </span>{{ player.id }}</div>
+    <div>
+      <label for="player-name">Player name: </label>
+      <p id="player-name">{{ player.name }}</p>  <!-- Nombre como texto en vez de input -->
+    </div>
+</div>
+
+<a [routerLink]="['/player-card', player?.id, 'media']" class="nav-link">
+  Media
+</a>
+
+
+<!-- <button type="button" class="btn btn-outline-primary" *ngIf="player" (click)="getMedia()" >Media</button> -->
+
+<button type="button" class="btn btn-outline-primary" (click)="goBack()" >Volver</button>
+<!--
+🔹 *ngIf="player" → Solo muestra los datos si player tiene valor.
+🔹 {{ player?.name | uppercase }} → Muestra el nombre en mayúsculas.
+🔹 {{ player?.id }} → Muestra el ID del jugador.
+🔹 this.route.paramMap.subscribe() → Detecta cambios en la URL y actualiza player. -->
