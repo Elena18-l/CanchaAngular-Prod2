@@ -44,19 +44,13 @@
       </div>
         <div class="botones">
       <!-- BOTONEEEEEES -->
-      <button class="boton-canchaMas" *ngIf="player" (click)="getMedia()">
-        Ver Media
-      </button>
-      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#carouselVideoModal">
-        Ver Videos
-      </button>
-
-      <!-- Botón para volver al equipo -->
-      <button type="button" class="boton-cancha" (click)="goBack()">
-        <i class="bi bi-arrow-left"></i> Volver al equipo
-      </button>
-    </div>
-    </div>
+      <button class="btn btn-primary" (click)="showImageGallery()">Ver Imágenes</button>
+      <button class="btn btn-primary" (click)="showVideoGallery()">Ver Videos</button>
+      
+      <app-player-media 
+        [player]="player"
+        #mediaComponent>
+      </app-player-media>
 
 
 
