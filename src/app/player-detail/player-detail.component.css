@@ -44,6 +44,7 @@ width: auto;
 justify-content: center;
 
 
+
 }
 
 .label-title, .fw-bold-title{
@@ -119,8 +120,8 @@ border: 1px solid black;
 }
 
 .player-image {
-  max-width: 350px;
-  height: auto;
+  width: auto;
+  height: 668px;
   display: block;
 }
 
@@ -141,3 +142,9 @@ font-weight: 700;
 margin:0;
 }
 
+.colDer{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  gap:10%;
+}

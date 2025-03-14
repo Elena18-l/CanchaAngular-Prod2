@@ -3,6 +3,7 @@
     width: 350px;
     height: 350px;
     margin: auto;
+   
   }
   
   canvas {
@@ -11,20 +12,22 @@
   }
   
   .stat-box {
+    font-family: Inter;
     position: absolute;
     background: black;
-    color: white;
-    padding: 5px 10px;
+    color: white;    
     text-align: center;
     border: 1px solid black;
     font-size: 14px;
     font-weight: bold;
+    max-width: 100px;
   }
   
   .stat-box span {
     display: block;
     font-size: 12px;
     color: white;
+    padding: 3px;
   }
   
   .stat-box strong {
@@ -36,14 +39,15 @@
   }
   
   .top {
-    top: -20px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
+    
   }
   
   .right {
     top: 30%;
-    right: -60px;
+    right: -30px;
   }
   
   .bottom-right {
@@ -58,6 +62,6 @@
   
   .left {
     top: 30%;
-    left: -60px;
+    left: -80px;
   }
   

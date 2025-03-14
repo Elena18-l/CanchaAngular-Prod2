@@ -60,7 +60,7 @@ createRadarChart() {
           data: stats,  // Ahora stats está correctamente definido
           backgroundColor: 'rgba(255, 165, 0, 0.2)',
           borderColor: '#FF9809',
-          borderWidth: 2,
+          borderWidth: 3,
           pointBackgroundColor: 'orange',
         },
       ],
@@ -75,10 +75,12 @@ createRadarChart() {
           max: 10,
           ticks: {
             stepSize: 2,
-            color: '#000',
+            color: '#ffffff00',
+            backdropColor: 'transparent'
+           
           },
           grid: {
-            color: '#000',
+            color: '#D38A03',
           }
         }
       },
