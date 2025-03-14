@@ -1,5 +1,5 @@
 <div class="containerDetail">
-  
+
 
   <div *ngIf="player">
     <h2 class="player-name-title">{{ player.name }}</h2>
@@ -9,71 +9,71 @@
 <div class="container-playerData">
   <div class="row px-2 d-flex justify-content-between">
 
+    <!-- Botón para ver medios -->
+
+
     <!-- Tabla de datos columna izquierda -->
     <div class="colIzq col-md-4">
-      
-      <div class="fila">
-        <div class="label">Posición</div>
-        <div class="fw-bold">{{ player?.position }}</div>
-      </div>
-      <div class="fila">
-        <div class="label">Camiseta</div>
-        <div class="fw-bold">{{ player?.shirtNumber }}</div>
-      </div>
-      <div class="fila">
-        <div class="label">Edad</div>
-        <div class="fw-bold">{{ player?.age }}</div>
-      </div>
-      <div class="fila">
-        <div class="label">Altura</div>
-        <div class="fw-bold">{{ player?.stature }}</div>
-      </div>
-      <div class="fila">
-        <div class="label">Media</div>
-        <div class="fw-bold">{{ player?.average }}</div>
+      <div class="estadisticas-tabla">
+        <div class="fila">
+          <div class="label">Posición</div>
+          <div class="fw-bold">{{ player?.position }}</div>
+        </div>
+        <div class="fila">
+          <div class="label">Camiseta</div>
+          <div class="fw-bold">{{ player?.shirtNumber }}</div>
+        </div>
+        <div class="fila">
+          <div class="label">Edad</div>
+          <div class="fw-bold">{{ player?.age }}</div>
+        </div>
+        <div class="fila">
+          <div class="label">Altura</div>
+          <div class="fw-bold">{{ player?.stature }}</div>
+        </div>
+        <div class="fila">
+          <div class="label">Media</div>
+          <div class="fw-bold">{{ player?.average }}</div>
+        </div>
       </div>
 
-      
-      <div class="player-bio col-md-4 w-100">   <!-- tiene que ser :nth-last-child(1)-->
+      <div class="player-bio col-md-4 w-100"> <!-- tiene que ser :nth-last-child(1)-->
         <h3>Biografía</h3>
         <p class="glass">{{ player?.bio }}</p>
-  
-      </div>
-    </div>
 
-    
-    
+      </div>
+        <div class="botones">
+      <!-- BOTONEEEEEES -->
+      <button class="btn btn-primary" (click)="showImageGallery()">Ver Imágenes</button>
+      <button class="btn btn-primary" (click)="showVideoGallery()">Ver Videos</button>
+      
+      <app-player-media 
+        [player]="player"
+        #mediaComponent>
+      </app-player-media>
+
+
+
 
     <!-- Foto jugador central -->
-    <div class="col-md-3 text-center player-image-container">
+    <div class="col-md-2 text-center player-image-container">
       <img [src]="player?.foto" alt="Player Image" class="player-image">
     </div>
 
     <!-- Tabla de datos columna derecha (pentagono)-->
-    <div class="colDer col-md-4">
+    <div class="colDer col-md-5">
 
       <div class="stats-title">
-      <h3 class="label-title">Estadísticas</h3>
-      <h3 class="fw-bold-title">de Jugador</h3>
+        <h3 class="label-title">Estadísticas</h3>
+        <h3 class="fw-bold-title">de Jugador</h3>
       </div>
-<div class="pentagonito">
-<div *ngIf="player">
-  <app-pentagon *ngIf="player?.skills" [skills]="player!.skills"></app-pentagon>
-</div>
-</div>
+      <div class="pentagonito">
+        <div *ngIf="player">
+          <app-pentagon *ngIf="player?.skills" [skills]="player!.skills"></app-pentagon>
+        </div>
+      </div>
+
+    
+    </div>
   </div>
-
-  </div>
 </div>
-
-
-
-<!-- Botón para ver medios -->
-<button class="boton-canchaMas" *ngIf="player" (click)="getMedia()">
-  Ver Media
-</button>
-
-<!-- Botón para volver al equipo -->
-<button type="button" class="boton-cancha" (click)="goBack()">
-  <i class="bi bi-arrow-left"></i> Volver al equipo
-</button>

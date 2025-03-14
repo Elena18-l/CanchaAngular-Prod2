@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PlayerService } from '../services/playerService';
 import { Player } from '../services/player';
 import { Players } from '../services/mockup-players';
 import { SafeUrlPipe } from '../player-media/safe-url.pipe';
-import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common'; // Importa CommonModule aquí
 import { RouterModule } from '@angular/router'; // Si necesitas enrutamiento
 
@@ -15,32 +13,35 @@ import { RouterModule } from '@angular/router'; // Si necesitas enrutamiento
   standalone: true, // Asegúrate de marcar el componente como standalone
   imports: [
     CommonModule, // Asegúrate de importar CommonModule para que funcione ngFor
-    RouterModule, // Si necesitas enrutamiento, asegúrate de importar RouterModule
     SafeUrlPipe
   ]
 })
-export class PlayerMediaComponent implements OnInit {
-  player?: Player;
+
+export class PlayerMediaComponent {
+  @Input()player?: Player;
+  @Output() closeModal = new EventEmitter<void>();
+
   activeIndex = 0; // Índice de la imagen activa en el carrusel
+  isModalOpen = false;
+  isVideoModalOpen = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private playerService: PlayerService,
-    private location: Location
-  ) { }
-
-  ngOnInit(): void {
-    this.getPlayerDetails();
+  openImageModal(index: number): void {
+    this.activeIndex = index;
+    this.isModalOpen = true;
   }
 
-  getPlayerDetails(): void {
-    const playerId = Number(this.route.snapshot.paramMap.get('id'));
-    console.log('ID del jugador:', playerId);
-    this.player = Players.find(player => player.id === playerId);
+  openVideoModal():void{
+    this.isVideoModalOpen = true;
   }
 
-  goBack(): void {
-    this.location.back();
+  closeImageModal(): void{
+    this.isModalOpen = false;
+    this.closeModal.emit();
+  }
+
+  closeVideoModal(): void{
+    this.isVideoModalOpen = false;
+    this.closeModal.emit();
   }
 
   setActiveImage(index: number): void {
@@ -50,5 +51,6 @@ export class PlayerMediaComponent implements OnInit {
   setActiveVideo(index: number): void {
     this.activeIndex = index;
   }
+
 }
 

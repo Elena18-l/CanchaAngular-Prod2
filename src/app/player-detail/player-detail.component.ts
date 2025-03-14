@@ -7,17 +7,19 @@ import { Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common'; 
 import { PentagonComponent } from '../pentagon/pentagon.component';
 import { PlayerMediaComponent } from '../player-media/player-media.component';
+import { SafeUrlPipe } from './player-detail/safe-url.pipe';
 @Component({
   selector: 'app-player-detail',
   standalone: true,  // Marcamos como standalone
-  imports: [CommonModule, PentagonComponent, PlayerDetailComponent],  // Importamos CommonModule para usar directivas como *ngIf
+  imports: [CommonModule, PentagonComponent, PlayerDetailComponent, SafeUrlPipe],  // Importamos CommonModule para usar directivas como *ngIf
   templateUrl: './player-detail.component.html',
   styleUrls: ['./player-detail.component.css'],
 })
 export class PlayerDetailComponent implements OnInit, OnDestroy {
 
   private routeSub: Subscription = new Subscription(); // Para manejar la suscripción
-  @Input() player?: Player;  // Asegúrate de que player tenga el tipo adecuado
+  @Input() player?: Player; 
+  activeIndex=0; // Asegúrate de que player tenga el tipo adecuado
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -66,5 +68,12 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
     if (this.player) {
       this.router.navigate(['/player', this.player.id, 'media']); // Navegar a los detalles del jugador
     }
+  }
+  setActiveImage(index: number): void {
+    this.activeIndex = index;
+  }
+
+  setActiveVideo(index: number): void {
+    this.activeIndex = index;
   }
 }

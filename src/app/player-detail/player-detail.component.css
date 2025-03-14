@@ -18,7 +18,7 @@
     font-family: Inter;
     background: black;
     color: white;
-    padding: 5px 10px;
+    padding: 2px 10px;
     flex-basis: 50%; /* Ocupa la mitad del ancho */
     text-align: left;
     max-width: 100px;
@@ -29,9 +29,9 @@
   font-style: bold;
   background-color: white;
   font-size: 16px;
-  padding: 5px 10px;
+  padding: 2px 10px;
   flex-grow: 1; /* Permite que el contenido se expanda */
-  text-align: left;
+  text-align: center;
   max-width: unset; /* Elimina la restricción de ancho */
   white-space: nowrap; /* Evita el salto de línea */
   overflow: hidden; /* Esconde el texto extra en caso de ser muy largo */
@@ -108,7 +108,7 @@ border: 1px solid black;
   width: 100%;
   height: auto; /* Ajusta la altura según el contenido */
   gap: 40px; /* Espaciado entre columnas */
-  padding: 20px 0; /* Reduce el espacio superior e inferior */
+  padding: 20px, 20px, 0, 20px ; /* Reduce el espacio superior e inferior */
 }
 
 .player-image-container {
@@ -122,7 +122,7 @@ border: 1px solid black;
 .player-image {
   width: auto;
   height: 668px;
-  display: block;
+  
 }
 
 .player{
@@ -145,6 +145,165 @@ margin:0;
 .colDer{
   display: flex;
   flex-direction: column;
-  align-content: space-between;
   gap:10%;
+  padding:0;
+}
+
+.colIzq{
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  justify-content: space-between;
+  
+}
+.container-playerData {
+  
+  padding: 20px 20px 0 20px; 
+}
+.botones{
+  display:flex;
+  justify-content: space-between;
+  margin-bottom:20px;
+}
+
+.boton-cancha, .boton-canchaMas {
+display:flex;
+justify-content: flex-end;
+}
+
+.estadisticas-tabla{
+  gap:20%;
+
+}
+
+.player-bio{
+padding:8px;
+background: rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+
+}
+
+
+
+
+/* --- recupero el botón de ver videos del compoente player-media*/
+
+
+/* Ajustes globales para los modales */
+.modal-content {
+  background-color: #FFE9BF; /* Color de fondo */
+  padding: 0;
+}
+
+/* Ajustes para el Modal de Imágenes */
+.modal-dialog.modal-sm {
+  max-width: fit-content;
+  width: fit-content; /* El modal se ajusta al tamaño de la imagen */
+  margin: 0 auto; /* Centrado del modal */
+}
+
+.modal-dialog.modal-sm .modal-body {
+  padding: 0;
+}
+
+/* Carrusel de imágenes */
+.carousel-inner {
+ 
+  justify-content: center;
+  align-items: center;
+}
+
+/* Para que las imágenes no se deformen */
+.carousel-inner img {
+  width: 100%; /* Asegura que las imágenes se ajusten al contenedor */
+  height: auto;
+  object-fit: contain; /* Mantiene las proporciones sin recortar */
+  object-position: center;
+}
+
+/* Ajustes del carrusel de imágenes */
+.carousel-item {
+  transition: none; /* Eliminar animación */
+}
+
+/* Contenedor de miniaturas */
+.thumb-container {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  overflow-x: auto;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+/* Miniaturas */
+.small-thumb {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  transition: transform 0.2s, border 0.2s;
+}
+
+/* Efecto hover en miniaturas */
+.small-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Borde y escala cuando la miniatura está activa */
+.active-thumb {
+  border: 2px solid #C02A2D;
+  transform: scale(1.15);
+}
+
+/* Ajustes para el Modal de Video */
+.modal-dialog.modal-lg {
+  max-width: 80%; /* Modal menos grande para videos */
+  width: 75%;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* Proporción 16:9 */
+  height: 0;
+  overflow: hidden;
+  background: black;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Los controles del carrusel */
+.carousel-control-prev,
+.carousel-control-next {
+  max-width: 100px;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Ajustes del botón "Volver" */
+.btn-outline-primary {
+  margin-top: 20px;
+  border-color: #C02A2D;
+  color: #C02A2D;
+}
+
+/* Efecto hover en el botón "Volver" */
+.btn-outline-primary:hover {
+  background-color: #C02A2D;
+  color: white;
+}
+
+/* Ajustes generales del modal */
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
