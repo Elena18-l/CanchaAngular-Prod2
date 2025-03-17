@@ -7,5 +7,5 @@ export const appRoutes: Routes = [
   { path: '', redirectTo: 'players', pathMatch: 'full' }, // Redirigir correctamente
   // Lista de jugadores
   { path: 'player/:id', component: PlayerDetailComponent }, // Detalle de un jugador
-  {path: 'player/:id/media', component: PlayerMediaComponent},
+  
 ];

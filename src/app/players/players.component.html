@@ -70,20 +70,21 @@
 
 <!-- Lista de jugadores -->
 <div class="players-grid">
-  
-  <div class="playerCard col-12 col-md-6 col-lg-4" *ngFor="let player of filteredPlayers; trackBy: trackByPlayerId">   
-
-    <a [routerLink]="['/player', player.id]" class="player-link">
+  <div class="playerCard" *ngFor="let player of filteredPlayers; trackBy: trackByPlayerId" 
+   [ngClass]="{
+     'selected': isSelected(player.id),
+     'selected-zero': isSelectedPlayerZero()
+   }"
+   (click)="toggleSelected(player.id)">
+  <a [routerLink]="['/player', player.id]" class="player-link">
       <div class="player-img-container">
-        <p class="playerNumber">{{ player.shirtNumber }}</p>
-        <img [src]="player.portrait" alt="foto de {{ player.name }}" class="player-img">
-        <div class="player-info">
-          <p class="font-player-sho">{{ player.name }}</p>
-          <p class="font-rol-sho">{{ player.position }}</p>
-        </div>
+          <p class="playerNumber">{{ player.shirtNumber }}</p>
+          <img [src]="player.portrait" alt="foto de {{ player.name }}" class="player-img">
+          <div class="player-info">
+              <p class="font-player-sho">{{ player.name }}</p>
+              <p class="font-rol-sho">{{ player.position }}</p>
+          </div>
       </div>
-    </a>
-  </div>
+  </a>
 </div>
-
 </div>

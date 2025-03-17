@@ -86,4 +86,20 @@ export class PlayersComponent {
   trackByPlayerId(index: number, player: any): number {
     return player.id;
   }
+  selectedPlayerId: number | null = 0;
+
+  toggleSelected(index: number) {
+    if (this.selectedPlayerId === null || this.selectedPlayerId !== index) {
+      this.selectedPlayerId = index;
+    }
+  }
+
+  isSelected(index: number): boolean {
+    console.log('selectedPlayerId: ', this.selectedPlayerId);
+    return this.selectedPlayerId === index;
+  }
+
+  isSelectedPlayerZero(): boolean {
+    return this.selectedPlayerId === 0;
+  }
 }

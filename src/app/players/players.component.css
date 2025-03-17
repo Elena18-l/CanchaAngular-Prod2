@@ -201,30 +201,40 @@
 }
 
 .player-img-container::after {
-  
     content: "";
+    position: absolute;
     top: 0;
     left: 0;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-
-    background-color: #C02A2D;
-    mix-blend-mode: multiply; /* O prueba con overlay, difference, etc. */
-    position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 1;
-
-
+    background: #C02A2D;  /* Capa roja semitransparente */
+    opacity: 0;  /* La capa empieza con opacidad 0 (sin capa visible) */
+    transition: opacity 0.5s ease-in-out;
+    mix-blend-mode: multiply;
+}
+playerCard:not(.selected) .player-img-container::after {
+    opacity: 1;  /* Muestra la capa roja en los jugadores no seleccionados */
 }
 
-.player-img-container:hover::after {
+.playerCard.selected-zero .player-img-container::after{
+    opacity: 0;
+}
+
+/* La información del jugador siempre debe ser visible */
+.player-info {
     opacity: 1;
 }
+
+/* .player-img-container:hover::after {
+    opacity: 0;
+} */
 /* YY */
 
 /* color(#C02A2D) */
-.playerCard:hover .player-info {
+/* .playerCard:hover .player-info {
+    opacity: 1;
+} */
+.player-info {
     opacity: 1;
 }
 
