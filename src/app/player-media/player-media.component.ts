@@ -37,7 +37,7 @@ export class PlayerMediaComponent implements OnInit {
     gallery: [],
     video: []
   }; // El jugador será de tipo Player o undefined
-  @Input() playerId!: number;
+  @Input() playerId!: string;
   activeIndex = 0;
   modalType: 'image' | 'video' | null = null;
 gallery: any;
@@ -48,9 +48,11 @@ gallery: any;
     private playerService: PlayerService,
     private location: Location
   ) {}
-
   ngOnInit(): void {
-    this.loadPlayerDetails();
+    this.route.paramMap.subscribe(params => {
+      this.playerId = params.get('id') || '';  // Asegúrate de que sea un string
+      this.loadPlayerDetails();  // Ahora que tienes el playerId, puedes cargar los detalles
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -59,16 +61,19 @@ gallery: any;
     }
   }
   loadPlayerDetails(): void {
-    if (this.playerId) {
-      this.playerService.getPlayerDetails(this.playerId.toString()).subscribe(player => {
+    if (this.playerId && this.playerId.length > 0) {
+      this.playerService.getPlayerDetails(this.playerId).subscribe(player => {
         if (player) {
-          this.player = player; // Aquí se asigna un valor correcto.
+          this.player = player;
         } else {
           console.error('No se pudo obtener detalles del jugador');
-          this.player = { ...this.player }; // Mantener la estructura inicial.
+          this.player = { ...this.player };  // Mantener la estructura inicial
         }
       });
-    }}
+    } else {
+      console.error('playerId no es válido');
+    }
+  }
     setActive(index: number) {
       // implementation of the setActive function
     }

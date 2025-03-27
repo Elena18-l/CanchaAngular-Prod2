@@ -7,19 +7,24 @@ export interface Skills{
 }
 
 export interface Player {
-    id:string;
-    name:string;
-    age:number;
-    foto:string; // esta es la de cuerpo entero
-    portrait:string;  //a ver si lo vamos solucionando. esta es la card
-    team:string;
+    id: string;
+    name: string;
+    age: number;
+    foto: string;
+    portrait: string;
+    team: string;
+    position: string;
     stature: number;
     average: number;
     shirtNumber: number;
-    position: string;
-    gallery: string[]; // las fotos de la galeria
+    skills: {
+      fisico: number;
+      tecnica: number;
+      fuerzaMental: number;
+      resistencia: number;
+      habilidadEspecial: number;
+    };
     bio: string;
-    skills:Skills;
+    gallery: string[];
     video: string[];
-    
-}
+  }

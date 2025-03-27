@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Player } from '../services/player';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common'; 
 import { PentagonComponent } from '../pentagon/pentagon.component';
 import { PlayerMediaComponent } from '../player-media/player-media.component';
@@ -18,9 +18,9 @@ import { PlayerService } from '../services/playerService';
 export class PlayerDetailComponent implements OnInit, OnDestroy {
 
   @Input() player?: Player; 
-  player$?: Observable<Player | undefined>; // Usamos un Observable
+  player$: Observable<Player | undefined> = new Observable<Player | undefined>();
   activeIndex = 0; 
-  selectedPlayerId: number = 0; // Cambiado a string porque Firebase usa strings
+  selectedPlayerId: string | undefined; // Cambiado a string porque Firebase usa strings
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +32,8 @@ export class PlayerDetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const playerId = this.route.snapshot.paramMap.get('id');
     if (playerId) {
-      this.selectedPlayerId = Number(playerId); // ✅ Convertir a número correctamente
+      this.selectedPlayerId = String(playerId);
+      this.player$ = this.playerService.getPlayerDetails(this.selectedPlayerId);
     }
   }
 

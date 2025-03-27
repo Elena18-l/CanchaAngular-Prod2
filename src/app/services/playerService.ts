@@ -38,20 +38,23 @@ export class PlayerService {
   }
 
   // Obtener detalles de un jugador por ID
-  getPlayerDetails(playerId: string): Observable<Player | undefined> {
-    const playerDocRef = doc(this.firestore, `players/${playerId}`);
-    return new Observable<Player | undefined>((observer) => {
-      getDoc(playerDocRef).then((docSnap) => {
-        if (docSnap.exists()) {
-          observer.next(docSnap.data() as Player); // Retorna los datos del jugador
-        } else {
-          observer.next(undefined); // Si el documento no existe
-        }
-        observer.complete();
-      }).catch((error) => {
-        observer.error(error);
-      });
-    });
+  getPlayerDetails(id: string): Observable<Player> {
+    return this.afs.collection('players').doc<Player>(id).valueChanges().pipe(
+      map(player => {
+  
+        const defaultSkills = {
+          fisico: 0,
+          tecnica: 0,
+          fuerzaMental: 0,
+          resistencia: 0,
+          habilidadEspecial: 0
+        };
+        return {
+          ...player,
+          skills: player.skills ? player.skills : defaultSkills // Si skills es undefined, asigna valores predeterminados
+        };
+      })
+    );
   }
 
   // Obtener jugadores filtrados desde Firebase

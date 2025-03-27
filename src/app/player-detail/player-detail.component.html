@@ -1,17 +1,11 @@
 <div class="containerDetail">
-
-
-  <div *ngIf="player">
-    <h2 class="player-name-title">{{ player.name }}</h2>
+  <!-- Mostrar solo si tenemos datos del jugador -->
+  <div *ngIf="player$ | async as player">
+    <h2 class="player-name-title">{{ player?.name }}</h2>
   </div>
-
 
   <div class="container-playerData">
     <div class="row px-2 d-flex justify-content-between">
-
-
-
-
       <!-- Tabla de datos columna izquierda -->
       <div class="colIzq col-md-4">
         <div class="estadisticas-tabla">
@@ -37,48 +31,35 @@
           </div>
         </div>
 
-        <div class="player-bio "> <!-- tiene que ser :nth-last-child(1)-->
+        <div class="player-bio">
           <h3>Biografía</h3>
           <p class="glass">{{ player?.bio }}</p>
+        </div>
 
-
-        <!-- BOTONES-->
-       
-      
-      </div>
-
-      <app-player-media [playerId]="selectedPlayerId"></app-player-media>
-
+        <!-- Botón para cambiar de vista o interactuar -->
         <div class="botoncito"></div>
-         
+
+        <!-- Componente para la galería de medios del jugador -->
+        <app-player-media [playerId]="selectedPlayerId"></app-player-media>
       </div>
-      
+
       <!-- Foto jugador central -->
       <div class="col-md-1 text-center player-image-container">
         <img [src]="player?.foto" alt="Player Image" class="player-image">
       </div>
 
-      <!-- Tabla de datos columna derecha (pentagono)-->
+      <!-- Tabla de datos columna derecha (pentágono de habilidades) -->
       <div class="colDer col-md-5">
-
         <div class="stats-title">
           <h3 class="label-title">Estadísticas</h3>
           <h3 class="fw-bold-title">de Jugador</h3>
         </div>
         <div class="pentagonito">
-          <div *ngIf="player">
-            <app-pentagon *ngIf="player?.skills" [skills]="player!.skills"></app-pentagon>
-          </div>
+          <app-pentagon *ngIf="player?.skills" [skills]="player?.skills"></app-pentagon>
         </div>
-
       </div>
-
     </div>
-    </div>
-
-    <div class="faja-duotono">
-      
-    </div>
-
   </div>
 
+  <div class="faja-duotono"></div>
+</div>
