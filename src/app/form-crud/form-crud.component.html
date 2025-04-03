@@ -1,58 +1,60 @@
-<div class="modal-overlay">
-    <div class="modal-content">
-      <h2>Crear Nuevo Jugador</h2>
-      <form [formGroup]="playerForm" (ngSubmit)="addPlayer()">
-        <label>Nombre:
-          <input type="text" formControlName="name" required />
-        </label>
-        <label>Posición:
-          <input type="text" formControlName="position" required />
-        </label>
-        <label>Camiseta:
-          <input type="number" formControlName="shirtNumber" required />
-        </label>
-        <label>Edad:
-          <input type="number" formControlName="age" required />
-        </label>
-        <label>Altura:
-          <input type="number" formControlName="stature" required />
-        </label>
-        <label>Media:
-          <input type="number" step="0.1" formControlName="average" required />
-        </label>
-        <label>Equipo:
-          <input type="text" formControlName="team" required />
-        </label>
-        <label>Biografía:
-          <textarea formControlName="bio"></textarea>
-        </label>
-  
-        <h3>Habilidades</h3>
-        <label>Físico:
-          <input type="number" formControlName="fisico" required />
-        </label>
-        <label>Fuerza Mental:
-          <input type="number" formControlName="fuerzaMental" required />
-        </label>
-        <label>Habilidad Especial:
-          <input type="number" formControlName="habilidadEspecial" required />
-        </label>
-        <label>Resistencia:
-          <input type="number" formControlName="resistencia" required />
-        </label>
-        <label>Técnica:
-          <input type="number" formControlName="tecnica" required />
-        </label>
-  
-        <h3>Imágenes</h3>
-        <label>Retrato:
-          <input type="text" formControlName="portrait" />
-        </label>
-        <label>Foto:
-          <input type="text" formControlName="foto" />
-        </label>
-  
-      </form>
-    </div>
-  </div>
-  
+<button class="btn btn-custom.images" (click)="openForm()">Añadir Jugador <i class="bi bi-images"></i></button>
+
+
+
+<!-- <div class="modal-overlay" *ngIf="isFormOpen" (playerAdded)="onPlayerAdded()" (close)="closeForm()"></div> -->
+<div class="modal-content">
+  <h2>Crear Nuevo Jugador</h2>
+  <form [formGroup]="playerForm" (ngSubmit)="addPlayer()">
+    <label>Nombre:
+      <input type="text" formControlName="name" required />
+    </label>
+    <label>Posición:
+      <input type="text" formControlName="position" required />
+    </label>
+    <label>Camiseta:
+      <input type="number" formControlName="shirtNumber" required />
+    </label>
+    <label>Edad:
+      <input type="number" formControlName="age" required />
+    </label>
+    <label>Altura:
+      <input type="number" formControlName="stature" required />
+    </label>
+    <label>Media:
+      <input type="number" step="0.1" formControlName="average" required />
+    </label>
+    <label>Equipo:
+      <input type="text" formControlName="team" required />
+    </label>
+    <label>Biografía:
+      <textarea formControlName="bio"></textarea>
+    </label>
+
+    <h3>Habilidades</h3>
+    <label>Físico:
+      <input type="number" formControlName="fisico" required />
+    </label>
+    <label>Fuerza Mental:
+      <input type="number" formControlName="fuerzaMental" required />
+    </label>
+    <label>Habilidad Especial:
+      <input type="number" formControlName="habilidadEspecial" required />
+    </label>
+    <label>Resistencia:
+      <input type="number" formControlName="resistencia" required />
+    </label>
+    <label>Técnica:
+      <input type="number" formControlName="tecnica" required />
+    </label>
+
+    <h3>Imágenes</h3>
+    <label>Retrato:
+      <input type="text" formControlName="portrait" />
+    </label>
+    <label>Foto:
+      <input type="text" formControlName="foto" />
+    </label>
+
+  </form>
+</div>

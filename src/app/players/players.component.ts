@@ -5,12 +5,12 @@ import { Player } from '../services/player';  // Asegúrate de que tu modelo Pla
 import { FormsModule } from '@angular/forms'; // Para usar ngModel
 import { CommonModule } from '@angular/common'; // Para usar ngClass
 import { PlayerDetailComponent } from '../player-detail/player-detail.component';
-import {FormCrudComponent} from '../form-crud/form-crud.component';
+// import {FormCrudComponent} from '../form-crud/form-crud.component';
 import {InMemoryDataService} from '../services/in-memory-data-service';
 @Component({
   selector: 'app-players',
   standalone: true, // Este es un componente standalone
-  imports: [FormsModule, CommonModule, PlayerDetailComponent, FormCrudComponent], // Necesario para ngModel y ngClass
+  imports: [FormsModule, CommonModule, PlayerDetailComponent ], // Necesario para ngModel y ngClass   FormCrudComponent
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
@@ -38,6 +38,7 @@ export class PlayersComponent implements OnInit {
   }
 
   openForm() {
+    console.error("abriendo formulario.yehelooo");
     this.isFormOpen = true;
   }
 

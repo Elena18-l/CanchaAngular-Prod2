@@ -58,8 +58,8 @@
       </select>
       <button (click)="clearFilters()" class="filter-button">Limpiar filtros</button>
       
-      <button (click)="openForm()" class="btn-add-player">Añadir Jugador</button>
-      <app-form-crud *ngIf="isFormOpen"(playerAdded)="onPlayerAdded()" (close)="closeForm()"></app-form-crud>
+      <!-- <button (click)="openForm()" class="btn-add-player">Añadir Jugador</button> -->
+      <app-form-crud></app-form-crud>
 
 
     </div>
