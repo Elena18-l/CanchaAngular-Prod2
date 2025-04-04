@@ -1,6 +1,6 @@
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
 # ApiKey
-/src/app/config/firebase-setup.ts
+
 
 
 # Compiled output

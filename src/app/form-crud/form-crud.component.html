@@ -53,14 +53,25 @@
             </label>
           </div>
 
-  
-        <h3>Imágenes</h3>
-        <label>Retrato:
-          <input type="text" formControlName="portrait" />
-        </label>
-        <label>Foto:
-          <input type="text" formControlName="foto" />
-        </label>
+          <h3>Imágenes</h3>
+
+          <label>Retrato:
+            <input type="file" accept="image/*" (change)="onFileSelected($event, 'portrait')" />
+          </label>
+          
+          <label>Foto:
+            <input type="file" accept="image/*" (change)="onFileSelected($event, 'foto')" />
+          </label>
+          
+          <label>Galería (múltiples imágenes):
+            <input type="file" accept="image/*" multiple (change)="onMultipleFilesSelected($event, 'gallery')" />
+          </label>
+          <h3>Videos</h3>
+<label>Subir videos:
+  <input type="file" accept="video/*" multiple (change)="onMultipleFilesSelected($event, 'video')" />
+</label>
+
+          
         <button type="submit" [disabled]="playerForm.invalid">Guardar</button>
       </form>
       
