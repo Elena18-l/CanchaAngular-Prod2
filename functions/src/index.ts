@@ -1,19 +1,63 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
+import * as admin from 'firebase-admin';
+import { onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
+import { Change } from 'firebase-functions';
 
-import {onRequest} from "firebase-functions/v2/https";
-import * as logger from "firebase-functions/logger";
+admin.initializeApp();
 
-// Start writing functions
-// https://firebase.google.com/docs/functions/typescript
+export const notifyPlayerChange = onDocumentUpdated('players/{playerId}', async (event) => {
+  const beforeData = event.data?.before.data();
+  const afterData = event.data?.after.data();
 
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+  if (!beforeData || !afterData) {
+    console.log('❌ Datos incompletos en el cambio de documento.');
+    return;
+  }
+
+  const payload: admin.messaging.Message = {
+    notification: {
+      title: '👟 Jugador actualizado',
+      body: `Se modificó a ${afterData.name || 'Jugador desconocido'}`,
+    },
+    topic: 'players',
+  };
+
+  try {
+    await admin.messaging().send(payload);
+    console.log('✅ Notificación enviada tras actualización de jugador');
+  } catch (error) {
+    console.error('❌ Error al enviar notificación:', error);
+  }
+});
+
+export const notifyPlayerWrite = onDocumentWritten('players/{playerId}', async (event) => {
+  const newData = event.data?.after.exists ? event.data.after.data() : null;
+  const oldData = event.data?.before.exists ? event.data.before.data() : null;
+
+  let title = '👟 Jugador actualizado';
+  let body = '';
+
+  if (!oldData && newData) {
+    title = '🆕 Nuevo jugador añadido';
+    body = `Nombre: ${newData.name}`;
+  } else if (!newData && oldData) {
+    title = '❌ Jugador eliminado';
+    body = `Nombre: ${oldData.name}`;
+  } else if (oldData && newData) {
+    body = `Nombre: ${newData.name}`;
+  } else {
+    console.log('⚠️ Cambio sin datos válidos.');
+    return;
+  }
+
+  const payload: admin.messaging.Message = {
+    notification: { title, body },
+    topic: 'players',
+  };
+
+  try {
+    await admin.messaging().send(payload);
+    console.log('✅ Notificación enviada tras escritura en jugador');
+  } catch (error) {
+    console.error('❌ Error al enviar notificación:', error);
+  }
+});

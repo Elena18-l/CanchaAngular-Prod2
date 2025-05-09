@@ -49,14 +49,19 @@ export class NotificationService {
   private getToken() {
     this.ngZone.run(() => {
       getToken(this.messaging, {
-        vapidKey: 'BON52LsP2dd-_lYvxRCX9EBNHcKJAu6yzYTsKCnutqoaygRWHn3oGhJEirZghp9pHhb7mAmv1HX42qZUe2GY-UQ', // Sustituye esta clave con tu propia clave VAPID
+        vapidKey: 'BON52LsP2dd-_lYvxRCX9EBNHcKJAu6yzYTsKCnutqoaygRWHn3oGhJEirZghp9pHhb7mAmv1HX42qZUe2GY-UQ',
       })
       .then((token) => {
         if (token) {
           console.log('🔑 Token FCM:', token);
+          
+          // 👇 Añade aquí los logs
+          console.log('➡️ Emitiendo token desde NotificationService');
           this.tokenSubject.next(token);
+          console.log('✅ Token emitido');
+  
         } else {
-          const msg = '❌ No se pudo obtener el token.';-
+          const msg = '❌ No se pudo obtener el token.';
           console.warn(msg);
           this.errorSubject.next(msg);
         }

@@ -7,9 +7,11 @@ import { PlayersComponent } from './players/players.component';
 import { Player } from './services/player'; 
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Observable,Subscription } from 'rxjs';
+import { BehaviorSubject, Observable,Subscription } from 'rxjs';
 import { User } from '@angular/fire/auth';
 import { NotificationService } from './services/notifications.service';
+import { inject } from '@angular/core';
+import { Messaging, getToken, onMessage } from '@angular/fire/messaging';
 
 @Component({
   selector: 'app-root',
@@ -38,28 +40,34 @@ export class AppComponent implements OnInit, OnDestroy {
   private tokenSubscription: Subscription | undefined;
   private errorSubscription: Subscription | undefined;
   private newMessageSubscription: Subscription | undefined;
-
+  private readonly _messaging = inject(Messaging);
+  private readonly _message = new BehaviorSubject<unknown | undefined>(undefined);
   constructor(private searchService: SearchService, private notificationService: NotificationService) {}
   
+  message$ = this._message.asObservable();
 
-  ngOnInit() {
-    this.searchService.searchText$.subscribe((text) => {
-      this.searchText = text; 
-    });
-    this.notificationService.requestPermissionAndGetToken(); // Llamando a este método aquí
+  ngOnInit(): void {
+    this.notificationService.requestPermissionAndGetToken();
+  
     this.tokenSubscription = this.notificationService.token$.subscribe((token) => {
-      this.token = token;
-      console.log('Token FCM recibido:', token); // Log para ver el token
+      if (token) {
+        this.token = token;
+        console.log('✅ Token FCM recibido en AppComponent:', token);
+      } else {
+        console.warn('⚠️ Token aún no disponible en AppComponent');
+      }
     });
+  
     this.errorSubscription = this.notificationService.error$.subscribe((error) => {
       this.errorMessage = error;
-      console.error('Error al obtener el token FCM:', error); // Log para ver el error
     });
+  
     this.newMessageSubscription = this.notificationService.newMessage$.subscribe((message) => {
       this.newMessage = message;
-      console.log('Nuevo mensaje recibido:', message); // Log para ver el mensaje
     });
   }
+  
+    
 
   ngOnDestroy() {
     // Nos desuscribimos de las suscripciones para evitar fugas de memoria
