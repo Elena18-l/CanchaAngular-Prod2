@@ -10,22 +10,28 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
-import { importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, isDevMode } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { provideStorage, getStorage } from '@angular/fire/storage';
-
+import { provideServiceWorker } from '@angular/service-worker';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 
 
 
 
 bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(appRoutes),
-    provideFirebaseApp(() => initializeApp(firebaseConfig)), // ✅ Solo una inicialización
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideDatabase(() => getDatabase()),
-    provideStorage(() => getStorage()),
+providers: [
+  provideRouter(appRoutes),
+  provideFirebaseApp(() => initializeApp(firebaseConfig)),
+  provideAuth(() => getAuth()),
+  provideFirestore(() => getFirestore()),
+  provideDatabase(() => getDatabase()),
+  provideStorage(() => getStorage()),
+  provideMessaging(() => getMessaging()), 
+  provideServiceWorker('ngsw-worker.js', {
+    enabled: !isDevMode(),
+    registrationStrategy: 'registerWhenStable:30000'
+  }),
   ],
 }).catch((err) => console.error(err));
 

@@ -21,6 +21,7 @@
     "@angular/platform-browser": "^19.1.0",
     "@angular/platform-browser-dynamic": "^19.1.0",
     "@angular/router": "^19.1.0",
+    "@angular/service-worker": "^19.2.4",
     "@angular/youtube-player": "^19.2.2",
     "@firebasegen/default-connector": "file:dataconnect-generated/js/default-connector",
     "@ng-bootstrap/ng-bootstrap": "^18.0.0",
