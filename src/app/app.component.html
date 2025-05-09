@@ -6,12 +6,10 @@
           <img src="/assets/logo.svg" class="logo" (click)="resetSelection()">
         </a>     
         <img src="assets/logosho.png" class="logoshohoku">
-
         <div>
           <!-- *div arquitectónico! lo he puesto yo(ferran), hasta que tenga el logo que poner en la linea 8! -->
         </div>
       </div>
-  
     </nav>
 
     <!-- Barra de búsqueda -->
@@ -36,14 +34,15 @@
         </div>
 
         <!-- Aquí Angular insertará las páginas dinámicamente -->
-        <router-outlet>
-          <div class="faja-central">
-            <div *ngIf="newMessage" class="notification-message">
-              <p>Nuevo mensaje recibido: {{ newMessage?.notification?.title }}</p>
-              <p>{{ newMessage?.notification?.body }}</p>
-            </div>
-          </div>
-        </router-outlet>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+    <!-- Área de notificación fuera del router-outlet -->
+    <div class="faja-central">
+      <div *ngIf="newMessage" class="notification-message">
+        <p>Nuevo mensaje recibido: {{ newMessage?.notification?.title }}</p>
+        <p>{{ newMessage?.notification?.body }}</p>
       </div>
     </div>
 
