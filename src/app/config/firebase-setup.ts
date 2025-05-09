@@ -7,6 +7,7 @@ export const firebaseConfig = {
     storageBucket: "cancha-angular.appspot.com",
     messagingSenderId: "731488175013",
     appId: "1:731488175013:web:6c62e9f77407a855119e4c",
-    measurementId: "G-2SC9QSB2WG"
+    measurementId: "G-2SC9QSB2WG",
+    vapidKey: 'BDf5KVbYsEpOMN_FfEkQr3SO5JaNuWWVcd51YTkewjU4OZnODGareo9HaVkV9LKpYrY4uoNuAr_RJpluAd1Gp5E'
   };
   

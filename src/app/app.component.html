@@ -38,7 +38,10 @@
         <!-- Aquí Angular insertará las páginas dinámicamente -->
         <router-outlet>
           <div class="faja-central">
-      
+            <div *ngIf="newMessage" class="notification-message">
+              <p>Nuevo mensaje recibido: {{ newMessage?.notification?.title }}</p>
+              <p>{{ newMessage?.notification?.body }}</p>
+            </div>
           </div>
         </router-outlet>
       </div>

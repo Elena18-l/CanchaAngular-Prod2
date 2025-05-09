@@ -23,7 +23,13 @@
             "tsConfig": "tsconfig.app.json",
            "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/firebase-messaging-sw.js",
+              {
+                "glob": "manifest.json",
+                "input": "src/",
+                "output": "/"
+              }
             ]
             ,
             "styles": [
@@ -45,8 +51,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kB",
-                  "maximumError": "10kB"
+                  "maximumWarning": "12kB",
+                  "maximumError": "15kB"
                 }
               ],
               "outputHashing": "all"

@@ -21,7 +21,7 @@ export class PentagonComponent implements AfterViewInit, OnChanges {
     console.log(this.skills, "y yo sigo aqui eseperandoteeee que tu dulce...");
   }
 ngOnChanges(changes: SimpleChanges): void {
-    if(changes['skills'] && this.skills){
+   if(changes['skills'] && this.skills){ 
       this.updatePlayerStats();
       this.updateChart();
     }
