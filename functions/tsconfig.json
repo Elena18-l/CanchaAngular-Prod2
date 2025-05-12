@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "module": "node16",
-    "esModuleInterop": true,
-    "moduleResolution": "node",
-    "noImplicitReturns": false,
-    "noUnusedLocals": true,
-    "outDir": "lib",
-    "sourceMap": true,
-    "strict": true,
-    "target": "es2020"
+    "module": "Node16",             
+    "esModuleInterop": true,        
+    "moduleResolution": "Node16",   
+    "noImplicitReturns": false,     
+    "noUnusedLocals": true,         
+    "outDir": "lib",                
+    "sourceMap": true,              
+    "strict": true,                 
+    "target": "es2020"              
   },
-  "compileOnSave": true,
+  "compileOnSave": true,           
   "include": [
-    "src"
+    "src"                           
   ]
 }

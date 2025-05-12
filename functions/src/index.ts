@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 import { onDocumentUpdated, onDocumentWritten } from 'firebase-functions/v2/firestore';
-import { Change } from 'firebase-functions';
+
 
 admin.initializeApp();
 
