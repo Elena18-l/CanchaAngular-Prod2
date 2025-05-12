@@ -10,7 +10,7 @@ import { provideFirestore, getFirestore, connectFirestoreEmulator } from '@angul
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideHttpClient } from '@angular/common/http';
-import { provideMessaging, getMessaging, connectMessagingEmulator } from '@angular/fire/messaging';
+import { provideMessaging, getMessaging } from '@angular/fire/messaging';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -18,7 +18,7 @@ bootstrapApplication(AppComponent, {
     provideFirebaseApp(() => {
       const app = initializeApp(firebaseConfig);
       console.log("✅ Firebase app initialized:", app);
-      if (firebaseConfig.production === false) {
+      if (false) {
         console.log("🔧 Conectando con los emuladores de Firebase...");
 
         // Conexión a Firestore Emulator (por defecto en puerto 8080)
@@ -29,9 +29,7 @@ bootstrapApplication(AppComponent, {
         const auth = getAuth(app);
         connectAuthEmulator(auth, 'http://localhost:9099');
 
-        // Conexión a Firebase Messaging Emulator (por defecto en puerto 4000)
-        const messaging = getMessaging(app);
-        connectMessagingEmulator(messaging, 'http://localhost:4000');
+       
       }
       return app;
     }),
