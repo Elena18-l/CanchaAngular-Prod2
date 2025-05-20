@@ -1,29 +1,18 @@
 {
-  // These tasks will run in order when initializing your CodeSandbox project.
   "setupTasks": [
     {
+      "command": "rm -rf node_modules package-lock.json",
+      "name": "Limpiar node_modules"
+    },
+    {
       "command": "npm install -g @angular/cli",
-      "name": "npm install -g @angular/cli"
-    },
-    {
-      "command": "npm install @material/snackbar",
-      "name": "npm install @material/snackbar"
-    },
-    {
-      "command": "npm install bootstrap",
-      "name": "npm install bootstrap"
-    },
-    {
-      "command": "npm install bootstrap-icons",
-      "name": "npm install bootstrap-icons"
+      "name": "Instalar Angular CLI global"
     },
     {
       "command": "npm install",
-      "name": "npm install"
+      "name": "Instalar dependencias"
     }
   ],
-
-  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
     "ng": {
       "name": "ng",
